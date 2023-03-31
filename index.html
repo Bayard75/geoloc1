@@ -18,7 +18,7 @@
     <div class="highlight-blue">
         <div class="container">
             <div class="intro">
-                <h2 class="text-center">Geolocation act 4&nbsp;</h2>
+                <h2 class="text-center">Geolocation act 1&nbsp;</h2>
                 <p class="text-center">Envoie de votre localisation au site principal</p>
             </div>
             <div class="buttons"><a class="btn btn-primary" role="button" href="#">restez sur la page !</a></div>
@@ -38,8 +38,17 @@ function getLocation() {
   }
 }
 function showPosition(position) {
-  lat.innerHTML = position.coords.latitude;
-  long.innerHTML = position.coords.longitude;
+  let body = {group: 4, latitude:position.coords.latitude, longitude:position.coords.longitude}
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type","application/json"); //Important or request.get_json() returns None 
+  
+  fetch('https://https://h24-koltes.onrender.com//submit', {
+          // Specify the method
+          method: 'POST',
+          // A JSON payload
+          body: JSON.stringify(body),
+          headers: myHeaders
+        })
 }
 getLocation()
 </script>
